@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd" >
+
+    <aop:aspectj-autoproxy/>
+
+    <bean id="helper" class="bussiness.Helper"/>
+
+     <bean  class="aspect.Audience">
+        <property name="audienceHelper" ref="helper"/>
+    </bean>
+
+    <bean  class="aspect.Audience"/>
+    <bean id="performance" class="bussiness.Singer" >
+        <constructor-arg value="singer"/>
+        <constructor-arg value="song"/>
+    </bean>
+
+    <bean id="blankDisc" class="soundsystem.BlankDisc">
+        <constructor-arg>
+            <list>
+                <value> The Beatles </value>
+                <value> Fixing a Hole </value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean class="aspect.TrackCounter"/>
+
+</beans>
